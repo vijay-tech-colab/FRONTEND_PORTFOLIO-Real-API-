@@ -1,74 +1,70 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FiHome, FiBriefcase, FiFileText, FiUser, FiSettings, FiMenu, FiX } from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import SkillCard from "../COMPONANTS/Skill/SkillCard";
+import { FaLaptopCode, FaDatabase, FaPaintBrush, FaCogs, FaUserTie,FaSpinner } from "react-icons/fa";
+import { MdGraphicEq } from "react-icons/md";
 
-export default function AdminDashboard() {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+const SkillList = () => {
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://portfolio-node-express-b7vo.onrender.com/api/v1/skill/all-skills",
+          { withCredentials: true }
+        );
+        setSkills(data.skills); // Ensure API returns skills inside an array
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching skills:", error);
+        setError("Failed to load skills.");
+        setLoading(false);
+      }
+    };
+    fetchSkills();
+  }, []);
+
+  // Function to map category to an icon
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case "Programming":
+        return <FaLaptopCode className="text-blue-500" />;
+      case "Database":
+        return <FaDatabase className="text-green-500" />;
+      case "Web Development":
+        return <FaLaptopCode className="text-indigo-500" />;
+      case "Design":
+        return <FaPaintBrush className="text-pink-500" />;
+      case "DevOps":
+        return <FaCogs className="text-orange-500" />;
+      case "Data Science":
+        return <MdGraphicEq className="text-purple-500" />;
+      default:
+        return <FaUserTie className="text-gray-500" />;
+    }
+  };
 
   return (
-    <div className="flex h-screen bg-gray-100 overflow-hidden">
-      {/* Sidebar */}
-      <aside
-        className={`bg-blue-900 text-white w-64 p-5 space-y-6 fixed inset-y-0 left-0 transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:relative md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
-      >
-        <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-          <button 
-            className="text-white text-2xl md:hidden" 
-            onClick={() => setSidebarOpen(false)}
-          >
-            <FiX />
-          </button>
-        </div>
-        <nav>
-          <ul className="space-y-4">
-            {[
-              { icon: <FiHome />, label: "Dashboard", to: "/" },
-              { icon: <FiBriefcase />, label: "Projects", to: "/projects" },
-              { icon: <FiFileText />, label: "Portfolio", to: "/portfolio" },
-              { icon: <FiUser />, label: "Clients", to: "/clients" },
-              { icon: <FiSettings />, label: "Settings", to: "/settings" },
-            ].map((item, index) => (
-              <li key={index}>
-                <Link
-                  to={item.to}
-                  className="flex items-center space-x-2 p-2 hover:bg-blue-700 rounded cursor-pointer"
-                >
-                  {item.icon} <span>{item.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
+    <div className="container mx-auto py-8 py-20">
+      <h2 className="text-3xl font-bold text-center mb-6">Skills</h2>
 
-      {/* Main content */}
-      <div className="flex-1 flex flex-col md:ml-64 overflow-hidden">
-        {/* Navbar */}
-        <header className="bg-white shadow p-4 flex bg-red-600 justify-between items-center fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40">
-          <button
-            className="text-xl md:hidden"
-            onClick={() => setSidebarOpen(!isSidebarOpen)}
-          >
-            {isSidebarOpen ? <FiX /> : <FiMenu />}
-          </button>
-          <h2 className="text-xl font-bold">Admin Dashboard</h2>
-        </header>
+      {loading && <div className="min-h-screen flex items-center justify-center">
+              <FaSpinner className="text-6xl text-blue-400 animate-spin" />
+            </div>}
+      {error && <p className="text-red-500 text-center">{error}</p>}
 
-        {/* Content */}
-        <main className="p-6 flex-1 overflow-y-auto mt-16">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold">
-              Welcome to the Portfolio Management Dashboard
-            </h3>
-            <p className="text-gray-600">
-              Manage your projects, portfolios, and clients efficiently.
-            </p>
-          </div>
-        </main>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 m-5">
+        {!loading &&
+          !error &&
+          skills.map((skill, i) => (
+            <SkillCard skill={skill} key={i} icon={getCategoryIcon(skill.category)} />
+          ))}
       </div>
     </div>
   );
-}
+};
+
+export default SkillList;

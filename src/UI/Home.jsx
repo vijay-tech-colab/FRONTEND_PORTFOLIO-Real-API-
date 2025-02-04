@@ -16,7 +16,7 @@ export default function LandingPage() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/v1/users/get-admin-data');
+                const response = await axios.get('https://portfolio-node-express-b7vo.onrender.com/api/v1/users/get-admin-data');
                 if (isMounted && response.data.success === true) {
                     setUser(response.data.adminData);
                 }

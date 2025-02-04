@@ -41,7 +41,7 @@ function Project() {
     <>
       <div className="py-10 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mt-14">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center m-5">
               {projects.map((project, index) => (
                   <ProjectCard key={project._id} project={project} />
               ))}

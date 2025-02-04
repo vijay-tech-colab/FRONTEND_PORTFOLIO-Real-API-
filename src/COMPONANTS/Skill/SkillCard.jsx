@@ -1,36 +1,36 @@
+import React from "react";
 
-const SkillCard = ({ skill }) => {
-    if (!skill) {
-        return null;
-    }
-return (
-    <div className="shadow-lg rounded-xl p-5 flex flex-col items-center  hover:shadow-2xl transition-shadow duration-300">
-        {/* Skill Icon */}
-        <div className="mb-3">
-            <img
-                src={skill.skillIcon.url}
-                alt={skill.name}
-                className="w-16 h-16 object-contain"
-            />
-        </div>
+const SkillCard = ({ skill, icon }) => {
+  if (!skill) return null;
 
-        {/* Skill Name */}
-        <h3 className="text-xl font-semibold text-gray-900">{skill.name}</h3>
+  return (
+    <div className="shadow-lg rounded-xl p-5 flex flex-col items-center hover:shadow-2xl transition-shadow duration-300">
+      {/* Skill Icon */}
+      <div className="mb-3">
+        <img
+          src={skill.skillIcon?.url}
+          alt={skill.name}
+          className="w-16 h-16 object-contain"
+        />
+      </div>
 
-        {/* Proficiency Level */}
-        <p className="text-gray-600">{skill.proficiency}</p>
+      {/* Skill Name */}
+      <h3 className="text-xl font-semibold text-gray-900">{skill.name}</h3>
 
-        {/* Experience */}
-        <p className="text-gray-500">
-            Experience: {skill.yearsOfExperience} years
-        </p>
+      {/* Proficiency Level */}
+      <p className="text-gray-600">{skill.proficiency}</p>
 
-        {/* Category */}
-        <span className="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-lg mt-2">
-            {skill.category}
-        </span>
+      {/* Experience */}
+      <p className="text-gray-500">
+        Experience: {skill.yearsOfExperience || 0} years
+      </p>
+
+      {/* Category */}
+      <span className="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded-lg mt-2 flex items-center">
+        {icon} <span className="ml-1">{skill.category}</span>
+      </span>
     </div>
-);
+  );
 };
 
-export default SkillCard
+export default SkillCard;
