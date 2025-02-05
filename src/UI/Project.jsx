@@ -3,18 +3,25 @@ import ProjectCard from "../COMPONANTS/Projects/ProjectCard";
 import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
 import Footer from "../COMPONANTS/Footer/Footer";
+import Pagination from "../COMPONANTS/Pagination/Pagination";
 
 function Project() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page,setPage] = useState(1);
+  const [totalPages,setTotalPages]= useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         const response = await axios.get(
-          "https://portfolio-node-express-b7vo.onrender.com/api/v1/project/get-projects?page=1&limit=10",
+          `https://portfolio-node-express-b7vo.onrender.com/api/v1/project/get-projects?page=${page}`,
           { withCredentials: true }
         );
+        // // console.log(response.data.totalPages);
+        setTotalPages(response.data.totalPages);
+        console.log(response.data)
         if (response.data.success) {
           setProjects(response.data.projects);
         }
@@ -24,9 +31,10 @@ function Project() {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, []);
+  }, [page]);
+ 
+
 
   if (loading)
     return (
@@ -46,7 +54,8 @@ function Project() {
                   <ProjectCard key={project._id} project={project} />
               ))}
           </div>
-          
+          <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+
       </div>
       <div className="flex flex-col items-center ">
       <Footer />

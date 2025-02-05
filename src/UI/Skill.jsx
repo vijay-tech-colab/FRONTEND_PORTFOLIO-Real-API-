@@ -3,29 +3,34 @@ import axios from "axios";
 import SkillCard from "../COMPONANTS/Skill/SkillCard";
 import { FaLaptopCode, FaDatabase, FaPaintBrush, FaCogs, FaUserTie,FaSpinner } from "react-icons/fa";
 import { MdGraphicEq } from "react-icons/md";
+import Pagination from "../COMPONANTS/Pagination/Pagination";
 
 const SkillList = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchSkills = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get(
-          "https://portfolio-node-express-b7vo.onrender.com/api/v1/skill/all-skills",
+          `https://portfolio-node-express-b7vo.onrender.com/api/v1/skill/all-skills?page=${page}`,
           { withCredentials: true }
         );
+        setTotalPages(data.totalPages);
         setSkills(data.skills); // Ensure API returns skills inside an array
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching skills:", error);
         setError("Failed to load skills.");
+      }finally{
         setLoading(false);
       }
     };
     fetchSkills();
-  }, []);
+  }, [page]);
 
   // Function to map category to an icon
   const getCategoryIcon = (category) => {
@@ -63,6 +68,7 @@ const SkillList = () => {
             <SkillCard skill={skill} key={i} icon={getCategoryIcon(skill.category)} />
           ))}
       </div>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
     </div>
   );
 };
