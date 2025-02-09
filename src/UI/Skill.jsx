@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SkillCard from "../COMPONANTS/Skill/SkillCard";
-import { FaLaptopCode, FaDatabase, FaPaintBrush, FaCogs, FaUserTie,FaSpinner } from "react-icons/fa";
+import { FaLaptopCode, FaDatabase, FaPaintBrush, FaCogs, FaUserTie, FaSpinner } from "react-icons/fa";
 import { MdGraphicEq } from "react-icons/md";
 import Pagination from "../COMPONANTS/Pagination/Pagination";
+import Spinner from "../COMPONANTS/spinner/Spinner";
 
 const SkillList = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -25,7 +26,7 @@ const SkillList = () => {
       } catch (error) {
         console.error("Error fetching skills:", error);
         setError("Failed to load skills.");
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
@@ -56,9 +57,11 @@ const SkillList = () => {
     <div className="container mx-auto py-8 py-20">
       <h2 className="text-3xl font-bold text-center mb-6">Skills</h2>
 
-      {loading && <div className="min-h-screen flex items-center justify-center">
-              <FaSpinner className="text-6xl text-blue-400 animate-spin" />
-            </div>}
+      {loading && (
+        <div className="h-[80vh] flex items-center justify-center">
+         <Spinner/>
+        </div>
+      )}
       {error && <p className="text-red-500 text-center">{error}</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 m-5">

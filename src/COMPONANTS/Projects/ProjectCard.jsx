@@ -16,12 +16,13 @@ const ProjectCard = ({ project }) => {
                 src={project.projectIcon.url} 
                 alt={`${project.title} thumbnail`} 
                 className="rounded-t-xl w-full h-48 object-cover"
+                title={project.title}
             />
-            <h3 className="text-xl font-semibold text-gray-900 mt-4">{project.title}</h3>
-            <p className="text-gray-600 text-sm mt-2">{project.description}</p>
+            <h3 className="text-xl font-semibold text-gray-900 mt-4" title={project.title}>{project.title}</h3>
+            <p className="text-gray-600 text-sm mt-2" title={project.description}>{project.description}</p>
             <div className="mt-3 grid grid-cols-2 gap-2">
                 {project.technologies.map((tech, index) => (
-                    <span key={index} className="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    <span key={index} className="text-xs font-bold bg-blue-100 text-blue-800 px-2 py-1 rounded" title={tech}>
                         {tech}
                     </span>
                 ))}
@@ -32,6 +33,7 @@ const ProjectCard = ({ project }) => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-800 hover:text-black flex items-center space-x-1"
+                    title="GitHub Repository"
                 >
                     <FaGithub className="text-gray-800" /> <span>GitHub</span>
                 </Link>
@@ -40,6 +42,7 @@ const ProjectCard = ({ project }) => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-gray-800 hover:text-black flex items-center space-x-1"
+                    title="Live Demo"
                 >
                     <FaExternalLinkAlt className="text-gray-800" /> <span>Live Demo</span>
                 </Link>
@@ -48,5 +51,4 @@ const ProjectCard = ({ project }) => {
     );
 };
 
-
-export default ProjectCard
+export default ProjectCard;

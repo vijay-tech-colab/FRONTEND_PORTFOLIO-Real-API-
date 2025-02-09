@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import {
-  FaSignInAlt,
-  FaSignOutAlt,
   FaBars,
   FaTimes,
   FaCode,
@@ -36,40 +34,45 @@ const Header = () => {
             <Link
               to="/"
               className="text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Home"
             >
               <FaHome /> Home
             </Link>
             <Link
               to="/about"
               className="text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="About"
             >
               <FaInfoCircle /> About
             </Link>
             <Link
               to="/skills"
               className="text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Skills"
             >
               <FaTools /> Skills
             </Link>
             <Link
               to="/projects"
               className="text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Projects"
             >
               <FaProjectDiagram /> Projects
             </Link>
             <Link
               to="/contact"
               className="text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Contact"
             >
               <FaEnvelope /> Contact
             </Link>
           </nav>
 
-
           {/* Mobile Menu Button (Hamburger) */}
           <button
             onClick={toggleMobileMenu}
             className="md:hidden text-gray-800 focus:outline-none"
+            title="Menu"
           >
             {isMobileMenuOpen ? <FaTimes size={25} /> : <FaBars size={25} />}
           </button>
@@ -83,30 +86,35 @@ const Header = () => {
             <Link
               to="/"
               className="block text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Home"
             >
               <FaHome /> Home
             </Link>
             <Link
               to="/about"
               className="block text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="About"
             >
               <FaInfoCircle /> About
             </Link>
             <Link
               to="/skills"
               className="block text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Skills"
             >
               <FaTools /> Skills
             </Link>
             <Link
               to="/projects"
               className="block text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Projects"
             >
               <FaProjectDiagram /> Projects
             </Link>
             <Link
               to="/contact"
               className="block text-gray-800 flex items-center gap-2 hover:text-gray-600"
+              title="Contact"
             >
               <FaEnvelope /> Contact
             </Link>

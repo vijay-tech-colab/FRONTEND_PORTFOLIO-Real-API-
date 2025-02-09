@@ -12,16 +12,16 @@ const Footer = () => {
 
         {/* Right section: Social media and contact */}
         <div className="flex space-x-6 mt-4 pl-4 md:mt-0">
-          <a href="https://github.com/vijay-tech-colab" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/vijay-tech-colab" target="_blank" rel="noopener noreferrer" title="GitHub">
             <FaGithub className="text-2xl hover:text-blue-500" />
           </a>
-          <a href="https://www.linkedin.com/in/vijay-kumar" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/vijay-kumar" target="_blank" rel="noopener noreferrer" title="LinkedIn">
             <FaLinkedin className="text-2xl hover:text-blue-500" />
           </a>
-          <a href="https://twitter.com/vijay_kumar" target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/vijay_kumar" target="_blank" rel="noopener noreferrer" title="Twitter">
             <FaTwitter className="text-2xl hover:text-blue-500" />
           </a>
-          <a href="mailto:vijay@example.com">
+          <a href="mailto:vijay@example.com" title="Email">
             <FaEnvelope className="text-2xl hover:text-blue-500" />
           </a>
         </div>

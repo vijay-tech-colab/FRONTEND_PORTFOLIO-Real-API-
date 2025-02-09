@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer
-        position="bottom-right"
+        position="top-right"  // Changed position to top-right
         autoClose={3000}  // Closes after 3 seconds
         hideProgressBar={false}
         newestOnTop={true}  // Shows newest toast on top

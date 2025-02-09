@@ -13,8 +13,8 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/context-provider";
-import { FaSpinner } from "react-icons/fa";
 import Footer from "../COMPONANTS/Footer/Footer";
+import Spinner from "../COMPONANTS/spinner/Spinner";
 
 const About = () => {
   const { user } = useContext(AuthContext);
@@ -29,9 +29,9 @@ const About = () => {
   // Show spinner if loading is true
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <FaSpinner className="text-6xl text-blue-400 animate-spin" />
-      </div>
+      <div className="h-[80vh] flex items-center justify-center">
+         <Spinner/>
+        </div>
     );
   }
 
@@ -47,13 +47,14 @@ const About = () => {
             src={user.avatar.url}
             alt="Avatar"
             className="w-32 h-32 rounded-full border-4 border-blue-400 shadow-lg"
+            title="User Avatar"
           />
         </div>
 
         {/* About Content */}
         <div className="p-8 rounded-2xl">
           <h2 className="text-4xl font-bold mb-6 flex items-center justify-center gap-3 text-blue-400">
-            <FaUser className="text-blue-400" /> About Me
+            <FaUser className="text-blue-400" title="User Icon" /> About Me
           </h2>
           <p className="mb-6 leading-relaxed text-lg">
             Hi, I'm{" "}
@@ -71,13 +72,13 @@ const About = () => {
           {/* Contact Info */}
           <div className="mb-6 text-lg">
             <p className="flex items-center justify-center gap-2">
-              <FaMapMarkerAlt /> {user.contact.address}
+              <FaMapMarkerAlt title="Address" /> {user.contact.address}
             </p>
             <p className="flex items-center justify-center gap-2">
-              <FaPhone /> {user.contact.phone}
+              <FaPhone title="Phone" /> {user.contact.phone}
             </p>
             <p className="flex items-center justify-center gap-2">
-              <FaEnvelope /> {user.email}
+              <FaEnvelope title="Email" /> {user.email}
             </p>
           </div>
 
@@ -88,6 +89,7 @@ const About = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-800 hover:text-gray-600 text-2xl"
+              title="GitHub"
             >
               <FaGithub />
             </Link>
@@ -96,6 +98,7 @@ const About = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-700 hover:text-blue-500 text-2xl"
+              title="LinkedIn"
             >
               <FaLinkedin />
             </Link>
@@ -104,6 +107,7 @@ const About = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 text-2xl"
+              title="Twitter"
             >
               <FaTwitter />
             </Link>
@@ -112,6 +116,7 @@ const About = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-500 hover:text-green-400 text-2xl"
+              title="Portfolio"
             >
               <FaGlobe />
             </Link>
@@ -123,12 +128,12 @@ const About = () => {
               Education
             </h3>
             <div className="flex items-center justify-center gap-3 text-lg">
-              <FaGraduationCap className="text-3xl" />
+              <FaGraduationCap className="text-3xl" title="Graduation Cap" />
               <p>
                 Bachelor of Computer Applications (BCA), Saltanat Veer Bahadur
                 Singh PG College (2026)
               </p>
-              <FaGraduationCap className="text-3xl" />
+              <FaGraduationCap className="text-3xl" title="Graduation Cap" />
             </div>
           </div>
 
@@ -137,6 +142,7 @@ const About = () => {
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-lg"
+              title="Contact Me"
             >
               <FaEnvelope /> Contact Me
             </Link>
@@ -145,6 +151,7 @@ const About = () => {
               download
               target=""
               className="inline-flex items-center justify-center gap-2 text-white bg-green-500 hover:bg-green-600 font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-lg"
+              title="Download Resume"
             >
               <FaDownload /> Download Resume
             </Link>
