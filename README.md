@@ -18,9 +18,7 @@ A modern, fully responsive **Frontend Portfolio** showcasing my projects, skills
 ✅ **Contact Form:** Users can send messages directly from the portfolio  
 ✅ **Dark Mode:** Toggle between light and dark themes  
 ✅ **Fully Responsive:** Works seamlessly on all devices  
-
 ---
-
 ### **How This Helps You**:  
 ✔️ **Well-structured** with sections like **features, installation, and contact details**.  
 ✔️ **SEO-friendly** for better visibility.  
