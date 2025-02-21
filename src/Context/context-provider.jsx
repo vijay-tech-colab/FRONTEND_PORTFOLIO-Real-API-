@@ -15,9 +15,7 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(() => {
-    return JSON.parse(sessionStorage.getItem("user")) || null;
-  });
+  const [user, setUser] = useState({});
 
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
@@ -79,12 +77,6 @@ const AuthProvider = ({ children }) => {
 
     return () => controller.abort();
   }, [projectPage]);
-
-  useEffect(() => {
-    if (user) {
-      sessionStorage.setItem("user", JSON.stringify(user));
-    }
-  }, [user]);
 
   return (
     <AuthContext.Provider

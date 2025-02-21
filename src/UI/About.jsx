@@ -44,7 +44,7 @@ const About = () => {
         {/* Avatar */}
         <div className="flex justify-center mb-6">
           <img
-            src={user.avatar.url}
+            src={user?.avatar?.url}
             alt="Avatar"
             className="w-32 h-32 rounded-full border-4 border-blue-400 shadow-lg"
             title="User Avatar"
