@@ -8,6 +8,7 @@ import About from "./UI/About";
 import ContactForm from "./UI/Contact";
 import Projects from "./UI/Project";
 import Skill from "./UI/Skill";
+import NotFound from "./UI/NotFound";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/skills" element={<Skill/>} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
