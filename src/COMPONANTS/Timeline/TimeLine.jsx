@@ -91,7 +91,7 @@ const Timeline = () => {
             } text-center md:text-left`}
           >
             <div
-              className={`flex flex-col md:flex-row items-center md:items-center bg-gradient-to-r gradient: "from-gray-200 to-white shadow-lg rounded-2xl p-6 md:max-w-sm transition-transform transform hover:scale-105`}
+              className={`flex flex-col md:flex-row items-center md:items-center bg-gradient-to-r gradient: "from-gray-900 to-white shadow-lg rounded-2xl p-6 md:max-w-sm transition-transform transform hover:scale-105`}
             >
               <div className="w-16 h-16 flex items-center justify-center px-2 rounded-full bg-white text-gray-800 text-3xl mb-4 md:mb-0 md:mr-4 shadow-lg">
                 {tech.icon}
@@ -110,4 +110,4 @@ const Timeline = () => {
   );
 };
 
-export default Timeline;
+export default Timeline; 

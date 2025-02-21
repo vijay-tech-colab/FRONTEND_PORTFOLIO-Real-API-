@@ -4,7 +4,6 @@ const SkillCard = ({ skill, icon }) => {
   if (!skill || skill.length === 0) {
     return (
       <div className="py-10 text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Skills</h2>
         <p className="text-gray-600">No skill available at the moment.</p>
       </div>
     );

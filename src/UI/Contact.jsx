@@ -14,40 +14,54 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      const response = await axios.post("https://portfolio-node-express-b7vo.onrender.com/api/v1/message/send-message", formData, { withCredentials: true });
-      toast.success("message send successfully");
+      await axios.post(
+        "https://portfolio-node-express-b7vo.onrender.com/api/v1/message/send-message",
+        formData,
+        { withCredentials: true }
+      );
+
+      toast.success("Message sent successfully!");
+      setFormData({ sender: "", senderEmail: "", message: "" }); // Reset form
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
-      setFormData({
-        sender: "",
-        senderEmail: "",
-        message: "",
-      });
     }
   };
 
   return (
     <>
-      <section id="contact" className="min-h-screen flex items-center justify-center px-6 pt-10">
-        <div className="max-w-2xl w-full p-8 rounded-2xl text-center">
+      <section
+        id="contact"
+        className="min-h-screen flex items-center justify-center px-6 pt-10 container mx-auto"
+      >
+        <div className="max-w-2xl w-full p-8 rounded-2xl text-center shadow-lg ">
           <h2 className="text-4xl font-bold mb-6 flex justify-center items-center gap-3 text-green-500">
-            <FaEnvelope className="text-green-500" title="Contact Me" /> Contact Me
+            <FaEnvelope className="text-green-500" title="Contact Me" />
+            Contact Me
           </h2>
           <p className="text-lg text-gray-600 mb-8">
             Have any questions or want to work together? Send me a message!
           </p>
+
+          {/* Display error message */}
+          {error && (
+            <p className="text-red-500 text-sm mb-4">
+              ❌ {error}
+            </p>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Input */}
@@ -60,8 +74,7 @@ const ContactForm = () => {
                 value={formData.sender}
                 onChange={handleChange}
                 required
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                title="Your Name"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
               />
             </div>
 
@@ -75,8 +88,7 @@ const ContactForm = () => {
                 value={formData.senderEmail}
                 onChange={handleChange}
                 required
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                title="Your Email"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
               />
             </div>
 
@@ -85,12 +97,11 @@ const ContactForm = () => {
               <textarea
                 name="message"
                 placeholder="Your Message"
-                rows="3"
+                rows="4"
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                title="Your Message"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
               />
             </div>
 
@@ -98,16 +109,25 @@ const ContactForm = () => {
             <button
               type="submit"
               className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 flex justify-center items-center gap-2"
-              title="Send Message"
+              disabled={loading}
             >
-              {loading ? <><Spinner/> Sending Message</> : <><FaPaperPlane /> Send Message</>}
+              {loading ? (
+                <>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <FaPaperPlane />
+                  Send Message
+                </>
+              )}
             </button>
           </form>
         </div>
       </section>
-      <div className="flex flex-col items-center">
-        <Footer />
-      </div>
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 };

@@ -27,18 +27,18 @@ const About = () => {
   }, [user]);
 
   // Show spinner if loading is true
-  if (loading) {
+  if (loading)
     return (
-      <div className="h-[80vh] flex items-center justify-center">
+      <div className="h-[100vh] flex items-center justify-center">
          <Spinner/>
         </div>
     );
-  }
 
   return (
+    <>
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center px-6 pt-20"
+      className="min-h-screen flex items-center justify-center px-6 pt-20 container mx-auto"
     >
       <div className="max-w-4xl text-center">
         {/* Avatar */}
@@ -157,11 +157,12 @@ const About = () => {
             </Link>
           </div>
         </div>
+      </div>
+    </section>
         <div className="flex flex-col items-center">
           <Footer />
         </div>
-      </div>
-    </section>
+    </>
   );
 };
 

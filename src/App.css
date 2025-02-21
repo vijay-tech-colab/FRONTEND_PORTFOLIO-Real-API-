@@ -5,7 +5,7 @@
 /* Default Font for Body */
 body {
   font-family: 'Nunito', sans-serif;
-  background-color:  #E8F5E9 ;
+  background-color:  #FFFDE7 ;
 }
 
 /* Headings */
@@ -27,6 +27,9 @@ a {
   font-family: 'Playfair Display', serif;
   text-decoration: none;
   color: #000;
+}
+a:hover {
+  color: rgb(112, 112, 240);
 }
 
 
